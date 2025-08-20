@@ -17,8 +17,8 @@ class AiServiceProvider extends ServiceProvider
             return new Ai;
         });
 
-        if (file_exists($helpers = __DIR__ . '/helpers.php')) {
-            require_once $helpers;
+        if (file_exists($functions = __DIR__ . '/functions.php')) {
+            require_once $functions;
         }
     }
 
@@ -31,6 +31,14 @@ class AiServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../config/config.php' => config_path('ai.php'),
             ], 'config');
+
+            $this->publishes([
+                __DIR__.'/../examples/' => resource_path('views/livewire/'),
+            ], 'ai-examples');
+
+            $this->commands([
+                \Devdojo\Ai\Commands\InstallExamplesCommand::class,
+            ]);
         }
     }
 }
