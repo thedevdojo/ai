@@ -7,54 +7,30 @@ use Illuminate\Support\ServiceProvider;
 class AiServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap the application services.
+     * Register services.
      */
-    public function boot()
+    public function register(): void
     {
-        /*
-         * Optional methods to load your package assets
-         */
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'ai');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'ai');
-        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        // $this->loadRoutesFrom(__DIR__.'/routes.php');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'ai');
 
-        if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('ai.php'),
-            ], 'config');
+        $this->app->singleton('ai', function () {
+            return new Ai;
+        });
 
-            // Publishing the views.
-            /*$this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/ai'),
-            ], 'views');*/
-
-            // Publishing assets.
-            /*$this->publishes([
-                __DIR__.'/../resources/assets' => public_path('vendor/ai'),
-            ], 'assets');*/
-
-            // Publishing the translation files.
-            /*$this->publishes([
-                __DIR__.'/../resources/lang' => resource_path('lang/vendor/ai'),
-            ], 'lang');*/
-
-            // Registering package commands.
-            // $this->commands([]);
+        if (file_exists($helpers = __DIR__ . '/helpers.php')) {
+            require_once $helpers;
         }
     }
 
     /**
-     * Register the application services.
+     * Bootstrap services.
      */
-    public function register()
+    public function boot(): void
     {
-        // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'ai');
-
-        // Register the main class to use with the facade
-        $this->app->singleton('ai', function () {
-            return new Ai;
-        });
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__.'/../config/config.php' => config_path('ai.php'),
+            ], 'config');
+        }
     }
 }
