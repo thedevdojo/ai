@@ -3,6 +3,20 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/devdojo/ai.svg?style=flat-square)](https://packagist.org/packages/devdojo/ai)
 [![Total Downloads](https://img.shields.io/packagist/dt/devdojo/ai.svg?style=flat-square)](https://packagist.org/packages/devdojo/ai)
 
+Interact with your favorite AI service using a single **ai** global method.
+
+```php
+$response = ai('What is the meaning of life?');
+```
+
+Capture the streamed response in a callback
+
+```php
+$response = ai('What color is the sky?', function($chunk){
+    // $chunk will contain the stream text response
+});
+```
+
 This package provides a simple way to integrate AI into your Laravel application using PrismPHP. The main purpose of this package allows you to use the global **ai()** method and easily get responses back from your favorite AI provider. Learn more below.
 
 ## Installation
