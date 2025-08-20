@@ -2,7 +2,6 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/devdojo/ai.svg?style=flat-square)](https://packagist.org/packages/devdojo/ai)
 [![Total Downloads](https://img.shields.io/packagist/dt/devdojo/ai.svg?style=flat-square)](https://packagist.org/packages/devdojo/ai)
-![GitHub Actions](https://github.com/devdojo/ai/actions/workflows/main.yml/badge.svg)
 
 This package provides a simple way to integrate AI into your Laravel application using PrismPHP.
 
@@ -17,7 +16,7 @@ composer require devdojo/ai
 ## Usage
 
 ```php
-// Usage description here
+$response = ai('What is the meaning of life?');
 ```
 
 ### Testing
