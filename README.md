@@ -3,21 +3,19 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/devdojo/ai.svg?style=flat-square)](https://packagist.org/packages/devdojo/ai)
 [![Total Downloads](https://img.shields.io/packagist/dt/devdojo/ai.svg?style=flat-square)](https://packagist.org/packages/devdojo/ai)
 
-Interact with your favorite AI service using a single **ai** global method.
+This package provides you with a global **ai()** method to easily get responses from your favorite AI provider. Here are a few examples:
 
 ```php
 $response = ai('What is the meaning of life?');
 ```
 
-Capture the streamed response in a callback
+Or capture the streamed response in a callback
 
 ```php
 $response = ai('What color is the sky?', function($chunk){
     // $chunk will contain the stream text response
 });
 ```
-
-This package provides a simple way to integrate AI into your Laravel application using PrismPHP. The main purpose of this package allows you to use the global **ai()** method and easily get responses back from your favorite AI provider. Learn more below.
 
 ## Installation
 
@@ -35,19 +33,85 @@ After you've installed the package, you'll want to add your AI Provider API Key.
 OPENAI_API_KEY=sk-proj-aReAlLyLoNgKey...
 ```
 
-After you've added your API key you are ready to use the **ai** method, which is as simple as the following.
+After that, you are ready to use the **ai** method anywher in your app:
 
 ```php
-$response = ai('What is the meaning of life?');
-```
-
-You may also wish to get a streamed response, which you can do so by adding a callback as the second argument:
-
-```php
-$response = ai('What color is the sky?', function($chunk){
-    // $chunk will contain the stream text response
+Route::get('question', function(){
+    echo ai('What is the meaning of life?');
 });
 ```
+
+You can also capture the streamed response, by passing a callback as the second argument.
+
+```php
+public function submit($input)
+{
+    $this->output = ai($input, function($chunk){
+        logger($chunk);
+    });
+}
+```
+
+This makes it super easy to return streamed responses in your Livewire components. In fact, this package offers two Single-File Volte component examples:
+
+1. basic-example.blade.php (a basic example of sending a message and getting a streamed response back)
+2. chat-example.blade.php (a chat example to show you how to pass an array of messages to create a conversation)
+
+> You can publish the examples to your project by running `php artisan ai:install-examples`.
+
+This will allow you to include those example components anywhere in your application. Pop this in the body of any Livewire page:
+
+```php
+<main class="w-screen h-screen flex items-center bg-stone-100 justify-center">
+  <div class="w-full max-w-7xl gap-5 mx-auto flex items-stretch">
+      <div class="h-full flex-1 p-10 space-y-5 rounded-xl bg-white shadow-sm">
+          <h2 class="text-xl font-semibold">Basic Example</h2>
+          <livewire:basic-example />
+      </div>
+      <div class="h-full flex-1 mx-auto p-10 space-y-5 rounded-xl bg-white shadow-sm">
+          <h2 class="text-xl font-semibold">Chat Example</h2>
+          <livewire:chat-example />
+      </div>
+  </div>
+</main>
+```
+
+This will allow you to use the **basic** message functionality and the **chat** functionality.
+
+GIF HERE
+
+## Configuration
+
+If you would like to change the AI provider and the AI model, you can specify the following `.env` variables:
+
+```
+AI_DEFAULT_PROVIDER=openai
+AI_DEFAULT_MODEL=gpt-4
+```
+
+You can also publish the AI config file that will live at `config/ai.php`:
+
+```php
+<?php
+
+return [
+    /*
+    |--------------------------------------------------------------------------
+    | AI Configuration
+    |--------------------------------------------------------------------------
+    |
+    | Configuration options for the DevDojo AI package.
+    |
+    */
+
+    'default_provider' => env('AI_DEFAULT_PROVIDER', 'openai'),
+    'default_model' => env('AI_DEFAULT_MODEL', 'gpt-4'),
+];
+```
+
+## PrismPHP
+
+This package doesn't really do much else besides providing you with an easy to use global **ai()** method. Most of the magic comes from [PrismPHP](https://prismphp.com/), you may wish to abstract this into your own global **ai()** method. All providers that are available via Prism are also supported in this package.
 
 ### Testing
 
