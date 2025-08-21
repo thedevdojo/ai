@@ -52,14 +52,29 @@ public function submit($input)
 }
 ```
 
-This makes it super easy to return streamed responses in your Livewire components. In fact, this package offers two Single-File Volte component examples:
+This makes it super easy to return streamed responses in your Livewire components. In fact, this package offers two Single-File Volt component examples.
 
-1. basic-example.blade.php (a basic example of sending a message and getting a streamed response back)
-2. chat-example.blade.php (a chat example to show you how to pass an array of messages to create a conversation)
+## Examples
 
-> You can publish the examples to your project by running `php artisan ai:install-examples`.
+You can publish a few examples by running:
 
-This will allow you to include those example components anywhere in your application. Pop this in the body of any Livewire page:
+```
+php artisan ai:install-examples
+```
+
+This will publish two component examples to your project. 
+
+1. **basic-example.blade.php** (a basic example of sending a message and getting a streamed response back)
+2. **chat-example.blade.php** (a chat example to show you how to pass an array of messages to create a conversation)
+
+This will allow you to include those example components anywhere in your application. 
+
+```php
+<livewire:basic-example />
+<livewire:chat-example />
+```
+
+You can easily test this out by utilizing the Livewire Starter Kit, Installing this package, Adding your API Key to .env, and then pasting the following into the `<body>` of your **welcome.blade.php** file:
 
 ```php
 <main class="w-screen h-screen flex items-center bg-stone-100 justify-center">
