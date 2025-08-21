@@ -25,8 +25,7 @@ class InstallExamplesCommand extends Command
 
         // Publish the example files
         $this->call('vendor:publish', [
-            '--tag' => 'ai-examples',
-            '--force' => $this->option('force') ?? false,
+            '--tag' => 'ai-examples'
         ]);
 
         $this->info('✅ AI example components installed successfully!');
