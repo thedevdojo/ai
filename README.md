@@ -17,6 +17,11 @@ $response = ai('What color is the sky?', function($chunk){
 });
 ```
 
+## Video Example
+
+https://github.com/user-attachments/assets/69c90f9c-b003-4077-900b-c7f3d264f537
+
+
 ## Installation
 
 You can install the package via composer:
@@ -104,7 +109,7 @@ You can easily test this out by utilizing the Livewire Starter Kit, Installing t
 
 Now you will be able to see the **basic** and **chat** example fully functioning and communicating with your favorite AI service.
 
-GIF HERE
+https://github.com/user-attachments/assets/69c90f9c-b003-4077-900b-c7f3d264f537
 
 ## Configuration
 
