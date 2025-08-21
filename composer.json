@@ -17,7 +17,8 @@
     ],
     "require": {
         "php": "^7.4|^8.0",
-        "illuminate/support": "^10.0|^11.0|^12.0"
+        "illuminate/support": "^10.0|^11.0|^12.0",
+        "prism-php/prism": "^0.1"
     },
     "require-dev": {
         "orchestra/testbench": "^6.0",

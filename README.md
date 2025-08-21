@@ -74,24 +74,35 @@ This will allow you to include those example components anywhere in your applica
 <livewire:chat-example />
 ```
 
-You can easily test this out by utilizing the Livewire Starter Kit, Installing this package, Adding your API Key to .env, and then pasting the following into the `<body>` of your **welcome.blade.php** file:
+You can easily test this out by utilizing the Livewire Starter Kit, Installing this package, Adding your API Key to .env, and then pasting the following into the **welcome.blade.php** file:
 
 ```php
-<main class="w-screen h-screen flex items-center bg-stone-100 justify-center">
-  <div class="w-full max-w-7xl gap-5 mx-auto flex items-stretch">
-      <div class="h-full flex-1 p-10 space-y-5 rounded-xl bg-white shadow-sm">
-          <h2 class="text-xl font-semibold">Basic Example</h2>
-          <livewire:basic-example />
-      </div>
-      <div class="h-full flex-1 mx-auto p-10 space-y-5 rounded-xl bg-white shadow-sm">
-          <h2 class="text-xl font-semibold">Chat Example</h2>
-          <livewire:chat-example />
-      </div>
-  </div>
-</main>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>AI Examples</title>
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    </head>
+    <body class="w-screen h-screen flex items-center bg-stone-100 justify-center">
+        <div class="w-full max-w-7xl gap-5 mx-auto flex items-stretch">
+            <div class="h-full flex-1 p-10 space-y-5 rounded-xl bg-white shadow-sm">
+                <h2 class="text-xl font-semibold">Basic Example</h2>
+                <livewire:basic-example />
+            </div>
+            <div class="h-full flex-1 mx-auto p-10 space-y-5 rounded-xl bg-white shadow-sm">
+                <h2 class="text-xl font-semibold">Chat Example</h2>
+                <livewire:chat-example />
+            </div>
+        </div>
+    </body>
+</html>
 ```
 
-This will allow you to use the **basic** message functionality and the **chat** functionality.
+**Make sure your asset running is watching via `composer dev` or `npm run dev`**.
+
+Now you will be able to see the **basic** and **chat** example fully functioning and communicating with your favorite AI service.
 
 GIF HERE
 
